@@ -1,0 +1,27 @@
+<% include ./partials/header %>
+<h1>Register form</h1>
+<form action="/register" method="post">
+    <label for="username">User Name</label>
+    <input class="form-control" type="text" name="username" autocomplete="off" required />
+    <label for="password">Password</label>
+    <input class="form-control" type="password" name="password" autocomplete="off" required />
+    <label for="password">First Name</label>
+    <input class="form-control" type="text" name="first_name" autocomplete="off" required />
+    <label for="password">Middle Initial</label>
+    <input class="form-control" type="text" name="middle_initial" autocomplete="off" required />
+    <label for="password">Last Name</label>
+    <input class="form-control" type="text" name="last_name" autocomplete="off" required />
+    <label for="password">Phone Number</label>
+    <input class="form-control" type="number" name="phone" autocomplete="off" required />
+    <button class="btn btn-md btn-primary btn-block">Register</button>
+</form>
+
+<!-- username: String, 
+    password: String, 
+    first_name: String, 
+    middle_initial: String, 
+    last_name: String,
+    phone: Number, 
+    isManager: Boolean, 
+    points_accrued: Number -->
+<% include ./partials/footer %>

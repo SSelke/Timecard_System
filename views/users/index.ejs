@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+<style>
+    body{
+        color: black;
+    }
+</style>
+<h1>Users page</h1>
+<li>
+    <a href="/logout">Logout</a>
+</li>
+
+<li>
+    <a href="#">Signed in as
+        <%= user.username %>
+    </a>
+</li>
+<li>
+    <a href="#">Signed in as
+        <%= user.last_name %>
+    </a>
+</li>
+<li>
+    <a href="#">Signed in as
+        <%= user.phone %>
+    </a>
+</li>
+
+<% if (user && user.isManager) { %>
+    <button>Admin button</button>
+    <% } %>
+<% include ../partials/footer %>

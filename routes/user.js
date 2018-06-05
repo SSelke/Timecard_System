@@ -5,14 +5,15 @@ var express    = require("express"),
 
 //INDEX SHOW USER INFO
 router.get("/", middleware.isLoggedIn, function(req, res){
-    User.find({}, function(err, currentUser){
-        if(err){
-            console.log("error occured");
-            console.log(err);
-        } else {
-            res.render("users/index", {user: currentUser});
-        }
-    });
+    res.render("users/index");
+});
+
+router.get("/admin", middleware.isManager, function(req, res){
+    res.render("users/admin");
+});
+
+router.get("admin/employees", middleware.isManager, function(req, res){
+    res.render("users/employees");
 });
 
 module.exports = router;
