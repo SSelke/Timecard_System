@@ -12,7 +12,15 @@ router.get("/admin", middleware.isManager, function(req, res){
     res.render("users/admin");
 });
 
-router.get("admin/employees", middleware.isManager, function(req, res){
+router.get("/admin/employees", middleware.isManager, function(req, res){
+    res.render("users/employees");
+});
+
+router.get("/admin/reports", middleware.isManager, function(req, res){
+    res.render("users/employees");
+});
+
+router.get("/admin/messages", middleware.isManager, function(req, res){
     res.render("users/employees");
 });
 
