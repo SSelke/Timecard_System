@@ -21,7 +21,9 @@ router.post("/register", function (req, res) {
         middle_initial: req.body.middle_initial, 
         last_name: req.body.last_name,
         phone: req.body.phone,
-        points_accrued: 0
+        points_accrued: 0,
+        address: req.body.address,
+        isManager: req.body.isManager
     });
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {

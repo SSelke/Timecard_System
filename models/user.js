@@ -9,7 +9,11 @@ var UserSchema = mongoose.Schema({
     last_name: String,
     phone: Number,
     isManager: Boolean,
-    points_accrued: Number
+    points_accrued: Number,
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose);
