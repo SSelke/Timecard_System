@@ -1,0 +1,18 @@
+@import "base.mixins";
+
+// a{
+//     color: $color3;
+
+//     @include hocus(){
+//         color: $color2;
+//     }
+// }
+
+.visible{
+    display: inline-block !important; 
+}
+
+.hidden{
+    display: none;
+}
+

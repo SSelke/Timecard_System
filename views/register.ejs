@@ -1,24 +1,83 @@
 <% include ./partials/header %>
-<h1>Register form</h1>
-<form action="/register" method="post">
-    <label for="username">User Name</label>
-    <input class="form-control" type="text" name="username" autocomplete="off" required />
-    <label for="password">Password</label>
-    <input class="form-control" type="password" name="password" autocomplete="off" required />
-    <label for="first_name">First Name</label>
-    <input class="form-control" type="text" name="first_name" autocomplete="off" required />
-    <label for="middle_initial">Middle Initial</label>
-    <input class="form-control" type="text" name="middle_initial" autocomplete="off" required />
-    <label for="last_name">Last Name</label>
-    <input class="form-control" type="text" name="last_name" autocomplete="off" required />
-    <label for="number">Phone Number</label>
-    <input class="form-control" type="number" name="phone" autocomplete="off" required />
-    <label for="Address">Phone Number</label>
-    <input class="form-control" type="text" name="address" autocomplete="off" required />
-    <label for="isManager">Manager Privilages</label>
-    <input class="form-control" type="checkbox" name="isManager" value="true" autocomplete="off" required />
-    <button class="btn btn-md btn-primary btn-block">Register</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="mx-auto mb-5" style="width: 400px;">Add a New Employee</h1>
+            <form class="mt-5" action="/register" method="post">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="username">User Name</label>
+                        <input class="form-control" type="text" name="username" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" name="password" autocomplete="off" required />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="first_name">First Name</label>
+                        <input class="form-control" type="text" name="first_name" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="middle_initial">Middle Initial</label>
+                        <select id="middle_initial" name="middle_initial" class="form-control">
+                            <option selected value=" "> </option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="G">G</option>
+                            <option value="H">H</option>
+                            <option value="I">I</option>
+                            <option value="J">J</option>
+                            <option value="K">K</option>
+                            <option value="L">L</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="O">O</option>
+                            <option value="P">P</option>
+                            <option value="Q">Q</option>
+                            <option value="R">R</option>
+                            <option value="S">S</option>
+                            <option value="T">T</option>
+                            <option value="U">U</option>
+                            <option value="V">V</option>
+                            <option value="W">W</option>
+                            <option value="X">X</option>
+                            <option value="Y">Y</option>
+                            <option value="Z">Z</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="last_name">Last Name</label>
+                        <input class="form-control" type="text" name="last_name" autocomplete="off" required />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="number">Phone Number</label>
+                        <input class="form-control" type="number" name="phone" autocomplete="off" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="privileges">Privileges</label>
+                        <select id="privileges" name="isManager" class="form-control">
+                            <option selected value="false">Employee</option>
+                            <option value="true">Manager</option>
+                        </select>
+                    </div>
+                </div>
+                <label for="Address">Address</label>
+                <input class="form-control" type="text" name="address" autocomplete="off" required />
+                <!-- <label for="isManager">Manager Privilages</label>
+                <input class="form-control" type="checkbox" name="isManager" value="true" autocomplete="off" /> -->
+                <button class="btn btn-md btn-primary btn-block mt-5">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- username: String, 
     password: String, 

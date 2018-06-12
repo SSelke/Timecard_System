@@ -1,0 +1,27 @@
+@import "_base.settings";
+@import "_base.fonts";
+@import "_base.palette";
+@import "_base.theme";
+@import "_base.mixins";
+
+
+body{
+    //set line heights
+    line-height: $base-line-height;
+
+    //set font weight
+    font-weight: $font-weight-normal;
+}
+
+h1,h2,h3,h4,h5,h6{
+    //set heading font weights
+    font-weight: $font-weight-heading;
+}
+
+//set heading sizes
+h1{ font-size: $header-size-1; }
+h2{ font-size: $header-size-2; }
+h3{ font-size: $header-size-3; }
+h4{ font-size: $header-size-4; }
+h5{ font-size: $header-size-5; }
+h6{ font-size: $header-size-6; }

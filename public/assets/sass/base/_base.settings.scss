@@ -1,0 +1,45 @@
+//
+// BASE SETTINGS
+//
+
+//HIGH LEVEL SETTING FOR ENTIRE SITE
+//
+
+$base-spacing-unit: 24px;
+$base-font-size: 16px;
+$base-line-height: $base-spacing-unit;
+
+// Spacing Sizes
+
+$spacing-smaller: $base-spacing-unit / 3;
+$spacing-small: $base-spacing-unit / 2;
+$spacing-normal: $base-spacing-unit;
+$spacing-large: $base-spacing-unit * 1.5;
+$spacing-larger: $base-spacing-unit * 2;
+$spacing-largest: $base-spacing-unit * 3;
+
+// FONT Sizes
+
+$font-xsmall: $base-font-size / 1.6;
+$font-small: $base-font-size / 1.3;
+$font-normal: $base-font-size;
+$font-large: $base-font-size * 1.5;
+$font-larger: $base-font-size * 2;
+$font-largest: $base-font-size * 3;
+
+// Font Weight
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 500;
+$font-weight-black: 700;
+$font-weight-heading: $font-weight-bold;
+
+// Headers Sizes
+
+$header-size-1: $base-font-size * 2;
+$header-size-2: $base-font-size * 1.5;
+$header-size-3: $base-font-size * 1.35;
+$header-size-4: $base-font-size * 1.2;
+$header-size-5: $base-font-size;
+$header-size-6: $base-font-size * 0.9;

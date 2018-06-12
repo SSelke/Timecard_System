@@ -19,7 +19,7 @@ app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
-app.use(flash());
+app.use(flash());                  
 
 //SEED DATABASE
 //seedDb();
@@ -47,6 +47,11 @@ app.use(function(req, res, next){
 
 app.use(indexRoutes);
 app.use("/users", userRoutes);
+
+app.all('*', function (req, res) {
+    req.flash("error", "Not a page");
+    res.redirect("/");
+});
 
 app.listen(27017, function(){
     console.log("Server Started...");

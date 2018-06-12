@@ -8,17 +8,18 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/partials/admin-header.css">
+    <link rel="stylesheet" href="/assets/css/partials/user-header.css">
+    <link rel="stylesheet" href="/assets/css/base/base.css">
 
 </head>
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Acme Development</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Lofi Development</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="/users">Personal</a>
+                <a class="nav-link" href="/logout">Logout</a>
             </li>
         </ul>
     </nav>
@@ -29,33 +30,39 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column" id="myList">
                         <li class="nav-item" role="tab">
-                            <a class="nav-link" href="/users/admin">
+                            <a class="nav-link" href="/users">
                                 <span data-feather="home"></span>
                                 Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item" role="tab">
-                            <a class="nav-link" href="/users/admin/employees">
-                                <span data-feather="file"></span>
-                                Employees
-                            </a>
-                        </li>
-                        <li class="nav-item" role="tab">
-                            <a class="nav-link" href="/users/admin/reports">
-                                <span data-feather="shopping-cart"></span>
-                                Reports
-                            </a>
-                        </li>
-                        <li class="nav-item" role="tab">
-                            <a class="nav-link" href="/users/admin/messages">
-                                <span data-feather="users"></span>
-                                Messages
-                            </a>
-                        </li>
+                        <% if ( user && user.isManager) { %>
+                            <li class="nav-item" role="tab">
+                                <a class="nav-link" href="/users/employees">
+                                    <span data-feather="file"></span>
+                                    Employees
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if ( user && user.isManager) { %>
+                            <li class="nav-item" role="tab">
+                                <a class="nav-link" href="/users/reports">
+                                    <span data-feather="shopping-cart"></span>
+                                    Reports
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if ( user && user.isManager) { %>
+                            <li class="nav-item" role="tab">
+                                <a class="nav-link" href="/users/messages">
+                                    <span data-feather="users"></span>
+                                    Messages
+                                </a>
+                            </li>
+                        <% } %>
                     </ul>
     
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>Saved reports</span>
                         <a class="d-flex align-items-center text-muted" href="#">
                             <span data-feather="plus-circle"></span>
@@ -86,6 +93,18 @@
                                 Year-end sale
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </nav>
+
+            <div class="container">
+                <% if( error && error.length > 0 ) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                <% } else if( success && success.length > 0 ) { %>
+                        <div class="alert alert-success" role="alert">
+                            <%= success %>
+                        </div>
+                <% } %>
+            </div>+

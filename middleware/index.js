@@ -9,22 +9,21 @@ middlewareObj.isLoggedIn = function (req, res, next) {
         return next();
     }
     console.log("You need to be signed in");
-    // req.flash("error", "You need to be logged in to do that!");
+    req.flash("error", "You need to be logged in to do that!");
     res.redirect("/");
 }
 
 middlewareObj.isManager = function(req, res, next){
     if(!req.user){
-        console.log("You need to be a signed in to do that");
+        req.flash("error", "Please Sign-in!");
         res.redirect("/"); 
     } else if(req.user.isManager){
         return next();
     } else {
         console.log("You need to be a manager");
-        // req.flash("error", "You need to be logged in to do that!");
+        req.flash("error", "Access Denied");
         res.redirect("/");
     }
 }
-
 
 module.exports = middlewareObj;

@@ -1,12 +1,12 @@
-<% include ../partials/admin-header %>
+<%- include ../partials/user-header %>
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="d-flex justify-content-between flex-wrap flex-xs-nowrap align-items-center pt-3 pb-2 mb-3">
         <h1 class="h2">Employees</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Add</button>
-                <button class="btn btn-sm btn-outline-secondary">Delete</button>
+                <a href="/register" class="btn btn-sm btn-outline-secondary">Add</a>
+                <button class="btn btn-sm btn-outline-secondary" id="delete-employee">Delete</button>
             </div>
         </div>
     </div>
@@ -23,27 +23,31 @@
                 </tr>
             </thead>
             <tbody>
-                <% users.forEach(function(user){%>
+                <% users.forEach(function(foundUser){ %>
                     <tr>
-                        <td>
-                            <%= user.first_name %>
+                        <td class="pt-4 pb-3">
+                            <%= foundUser.first_name %>
                         </td>
-                        <td>
-                            <%= user.username %>
+                        <td class="pt-4 pb-3">
+                            <%= foundUser.username %>
                         </td>
-                        <td>
-                            <%= user.phone %>
+                        <td class="pt-4 pb-3">
+                            <%= foundUser.phone %>
                         </td>
-                        <td>
-                            <%= user.address %>
+                        <td class="pt-4 pb-3">
+                            <%= foundUser.address %>
                         </td>
-                        <td>  
-                            <p>
-                                <a href="/users/<%= user._id%>" class="btn btn-outline-warning mt-3">Edit</a>
-                            </p>
+                        <td style="width: 250px;">  
+                            <a href="/users/<%= user._id%>" class="btn btn-outline-success mt-3 mb-3 visible">View</a>
+                            <a href="/users/<%= user._id%>" class="btn btn-outline-warning mt-3 mb-3 visible">Edit</a>
+                            <%# if(user != foundUser) %>
+                                <form class="d-none toggle-danger mt-3" action="/users/<%= user._id%>?_method=DELETE" method="POST">
+                                    <button href="/users/<%= user._id%>" class="btn btn-outline-danger visible">Delete</button>
+                                </form>
+                            <%# } %>
                         </td>
                     </tr>
-                <% });%>
+                <% }); %>
             </tbody>
         </table>
     </div>

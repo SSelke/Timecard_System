@@ -29,10 +29,8 @@ router.post("/register", function (req, res) {
         if (err) {
             return res.render("register", { error: err.message }, console.log(err));
         }
-        console.log(req.body.last_name);
-        passport.authenticate("local")(req, res, function () {
-            res.redirect("/users");
-        });
+        //redirect to Employees Page
+        res.redirect("/users/employees");
     });
 });
 
