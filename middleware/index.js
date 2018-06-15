@@ -13,11 +13,11 @@ middlewareObj.isLoggedIn = function (req, res, next) {
     res.redirect("/");
 }
 
-middlewareObj.isManager = function(req, res, next){
-    if(!req.user){
+middlewareObj.isManager = function (req, res, next) {
+    if (!req.user) {
         req.flash("error", "Please Sign-in!");
-        res.redirect("/"); 
-    } else if(req.user.isManager){
+        res.redirect("/");
+    } else if (req.user.isManager) {
         return next();
     } else {
         console.log("You need to be a manager");

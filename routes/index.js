@@ -16,21 +16,24 @@ router.get("/register", function (req, res) {
 //hadles sign up logic
 router.post("/register", function (req, res) {
     var newUser = new User({
-        username: req.body.username, 
-        first_name: req.body.first_name, 
-        middle_initial: req.body.middle_initial, 
+        username: req.body.username,
+        first_name: req.body.first_name,
+        password: req.body.password,
+        middle_initial: req.body.middle_initial,
         last_name: req.body.last_name,
         phone: req.body.phone,
         points_accrued: 0,
         address: req.body.address,
+        email: req.body.email,
         isManager: req.body.isManager
     });
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
             return res.render("register", { error: err.message }, console.log(err));
         }
-        //redirect to Employees Page
-        res.redirect("/users/employees");
+        passport.authenticate("local")(req, res, function () {
+            res.redirect("/users");
+        });
     });
 });
 
