@@ -64,19 +64,19 @@ router.put("/:id", function (req, res) {
 });
 
 router.delete("/:id", middleware.isLoggedIn, middleware.isManager, function (req, res) {
-    if(req.params.id === req.user.id){
+    if(req.params.id == req.user._id){
         req.flash("error", "Cannot Delete Yourself");
-        res.redirect("/users/employees");
+        res.redirect("back");
+    } else {
+        User.findByIdAndRemove(req.params.id, function (err) {
+            if (err) {
+                console.log(err);
+                res.redirect("/users/employees");
+            } else {
+                res.redirect("/users/employees");
+            }
+        });
     }
-
-    User.findByIdAndRemove(req.params.id, function (err) {
-        if (err) {
-            console.log(err);
-            res.redirect("/users/employees");
-        } else {
-            res.redirect("/users/employees");
-        }
-    });
 });
 
 
