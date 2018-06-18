@@ -4,7 +4,7 @@
   "description": "A time-card system that will allow employees to clock in and out. As well as allow managers to see timesheets and print reports.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
