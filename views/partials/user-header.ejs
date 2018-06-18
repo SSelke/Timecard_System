@@ -38,7 +38,7 @@
                         </li>
                         <% if ( user && user.isManager) { %>
                             <li class="nav-item" role="tab">
-                                <a class="nav-link" href="/users/employees">
+                                <a class="nav-link" href="/admin/employees">
                                     <span data-feather="file"></span>
                                     Employees
                                 </a>
@@ -46,13 +46,21 @@
                         <% } %>
                         <% if ( user && user.isManager) { %>
                             <li class="nav-item" role="tab">
-                                <a class="nav-link" href="/users/reports">
+                                <a class="nav-link" href="/admin/reports">
                                     <span data-feather="shopping-cart"></span>
                                     Reports
                                 </a>
                             </li>
                         <% } %>
                         <% if ( user && user.isManager) { %>
+                            <li class="nav-item" role="tab">
+                                <a class="nav-link" href="/admin/messages">
+                                    <span data-feather="users"></span>
+                                    Messages
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if ( user && !user.isManager) { %>
                             <li class="nav-item" role="tab">
                                 <a class="nav-link" href="/users/messages">
                                     <span data-feather="users"></span>
@@ -97,7 +105,7 @@
                 </div>
             </nav>
 
-            <div class="container">
+            <div class="container mt-5">
                 <% if( error && error.length > 0 ) { %>
                     <div class="alert alert-danger" role="alert">
                         <%= error %>
@@ -107,4 +115,4 @@
                             <%= success %>
                         </div>
                 <% } %>
-            </div>+
+            </div>

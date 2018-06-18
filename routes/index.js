@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
-var passport = require("passport");
-var User = require("../models/user");
+var express  = require("express"),
+    router   = express.Router(),
+    passport = require("passport"),
+    User     = require("../models/user");
 
 //root route
 router.get("/", function (req, res) {
@@ -16,16 +16,17 @@ router.get("/register", function (req, res) {
 //hadles sign up logic
 router.post("/register", function (req, res) {
     var newUser = new User({
-        username: req.body.username,
-        first_name: req.body.first_name,
-        password: req.body.password,
+        username:       req.body.username,
+        first_name:     req.body.first_name,
+        password:       req.body.password,
         middle_initial: req.body.middle_initial,
-        last_name: req.body.last_name,
-        phone: req.body.phone,
+        last_name:      req.body.last_name,
+        phone:          req.body.phone,
         points_accrued: 0,
-        address: req.body.address,
-        email: req.body.email,
-        isManager: req.body.isManager
+        address:        req.body.address,
+        email:          req.body.email,
+        isManager:      req.body.isManager,
+        isSysAdmin:     req.body.isSysAdmin
     });
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
@@ -41,7 +42,8 @@ router.post("/register", function (req, res) {
 router.post("/", passport.authenticate("local",
     {
         successRedirect: "/users",
-        failureRedirect: "/"
+        failureRedirect: "/",
+        badRequestMessage: 'Missing username or password.',
     }), function (req, res) {
     });
 

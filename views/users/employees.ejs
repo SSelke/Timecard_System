@@ -19,6 +19,7 @@
                     <th>Username</th>
                     <th>Phone</th>
                     <th>Address</th>
+                    <th>Position</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -26,7 +27,7 @@
                 <% users.forEach(function(foundUser){ %>
                     <tr>
                         <td class="pt-4 pb-3">
-                            <%= foundUser.first_name %>
+                            <%= foundUser.first_name %> <%= foundUser.last_name %>
                         </td>
                         <td class="pt-4 pb-3">
                             <%= foundUser.username %>
@@ -37,14 +38,23 @@
                         <td class="pt-4 pb-3">
                             <%= foundUser.address %>
                         </td>
+                        <td class="pt-4 pb-3">
+                            <% if(foundUser.isSysAdmin) {%>
+                                <div>Administrator</div>
+                            <% } else if(foundUser.isManager) { %>
+                                <div>Manager</div>
+                            <% } else { %>
+                                <div>Employee</div>
+                            <% } %>
+                        </td>
                         <td style="width: 250px;">  
-                            <a href="/users/<%= user._id%>" class="btn btn-outline-success mt-3 mb-3 visible">View</a>
-                            <a href="/users/<%= user._id%>" class="btn btn-outline-warning mt-3 mb-3 visible">Edit</a>
-                            <%# if(user != foundUser) %>
-                                <form class="d-none toggle-danger mt-3" action="/users/<%= foundUser._id%>?_method=DELETE" method="POST">
-                                    <button class="btn btn-outline-danger visible">Delete</button>
+                            <a href="/admin/<%= user._id%>" class="btn btn-success mt-3 mb-3 visible">View</a>
+                            <a href="/admin/<%= user._id%>" class="btn btn-warning mt-3 mb-3 visible">Edit</a>
+                            <% if(user.username != foundUser.username) {%>
+                                <form class="d-none toggle-danger mt-3" action="/admin/<%= foundUser._id%>?_method=DELETE" method="POST">
+                                    <button class="btn btn-danger visible">Delete</button>
                                 </form>
-                            <%# } %>
+                            <% } %>
                         </td>
                     </tr>
                 <% }); %>
@@ -54,37 +64,4 @@
 </main>
 </div>
 </div>
-
-<!-- Graphs -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-<script>
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            datasets: [{
-                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                borderWidth: 4,
-                pointBackgroundColor: '#007bff'
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }]
-            },
-            legend: {
-                display: false,
-            }
-        }
-    });
-</script>
-
-<% include ../partials/footer %>
+<%- include ../partials/footer %>

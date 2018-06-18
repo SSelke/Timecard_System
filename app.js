@@ -7,12 +7,14 @@ var express        = require("express"),
     LocalStrategy  = require("passport-local"),
     nodemailer     = require("nodemailer"),
     User           = require("./models/user"),
+    Message        = require("./models/message"),
     seedDb         = require("./seed"),
     app            = express();
 
 //require routes
 var userRoutes  = require("./routes/user.js"),
-    indexRoutes = require("./routes/index.js");
+    indexRoutes = require("./routes/index.js"),
+    adminRoutes = require("./routes/admin.js");
 
 mongoose.connect("mongodb://admin:timecard123@ds245210.mlab.com:45210/timecard_system");
 app.use(methodOverride("_method"));
@@ -47,6 +49,7 @@ app.use(function(req, res, next){
 
 app.use(indexRoutes);
 app.use("/users", userRoutes);
+app.use("/admin", adminRoutes);
 
 app.all('*', function (req, res) {
     req.flash("error", "Not a page");
