@@ -56,6 +56,6 @@ app.all('*', function (req, res) {
     res.redirect("/");
 });
 
-app.listen(27017, function(){
+app.listen(27017 || process.env.PORT, function(){
     console.log("Server Started...");
 });
