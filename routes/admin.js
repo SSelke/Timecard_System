@@ -2,6 +2,7 @@ var express    = require("express"),
     router     = express.Router({ mergeParams: true }),
     User       = require("../models/user"),
     Message    = require("../models/message"),
+    deepPopulate = require("mongoose-deep-populate"),
     middleware = require("../middleware");
 
 // For admin use to view, create, update, and destroy users
@@ -22,39 +23,64 @@ router.get("/reports", middleware.isLoggedIn, middleware.isManager, function (re
     res.render("users/reports");
 });
 
-router.get("/messages", middleware.isLoggedIn, middleware.isManager, function (req, res) {
-    User.find({}).populate("messages").exec(function (err, allUsers) {
-        if (err) {
-            console.log("Error Occured");
-            console.log(err);
-        } else {
-            res.render("users/messages", { users: allUsers });
-        }
-    })
-});
+// Gets the message page
+router.get("/messages", middleware.isLoggedIn, function (req, res) {
+    User
+        .findOne({ username: req.user.username })
+        .populate({
+            path: "messages",
+            select: "text"
+        })
+        .exec(function (err, foundUser) {
+            if (err || !foundUser) {
+                console.log(err);
+                req.flash("error", "User Not Found");
+                res.redirect("back");
+            } else {
+                User.find({}, function (err, foundUsers) {
+                    if (err || !foundUsers) {
+                        console.log(err);
+                        req.flash("error", "Users Not Found");
+                        res.redirect("back");
+                    } else {
+                        res.render("users/messages", { users: foundUsers, user: foundUser });
+                    }
+                });
+            }
+        });
+})
+
+//================//
+// POST A MESSAGE //
+//================//
 
 router.post("/messages", middleware.isLoggedIn, function (req, res) {
-    User.findById(req.params.id, function (err, foundUser) {
+    User.findOne({ username: req.body.reciever }, (err, foundUser) => {
         if (err) {
-            console.log(err, "Message Post Error");
-            res.redirect("back");
+            res.redirect("back")
         } else {
-            Message.create(req.body.message, function (err, message) {
+            const newMessage = {
+                text: req.body.message,
+                author: {
+                    id: req.user._id,
+                    name: req.user.first_name + " " + req.user.middle_initial + " " + req.user.last_name
+                }
+            }
+            Message.create(newMessage, (err, newMessage) => {
                 if (err) {
                     req.flash("error", "Whoops! Something went wrong...");
                     console.log(err);
+                    res.redirect("/users/messages");
                 } else {
-                    message.author.id = req.user._id;
-                    message.author.name = req.user.first_name + " " + req.user.middle_initial + " " + req.user.last_name;
-                    message.save();
-                    foundUser.messages.push(message);
-                    foundUser.save();
-                    req.flash("success", "Message Sent!");
+                    User.findOneAndUpdate({ username: req.body.reciever }, { $push: { messages: newMessage._id } }, (err, updateData) => {
+                        req.flash("success", "Message Sent!");
+                        res.redirect("/users/messages");
+                    })
                 }
-            });
+            })
         }
-    });
-});
+    })
+})
 
 // view all info on a selected employee
 router.get("/:id", middleware.isLoggedIn, middleware.isManager, function (req, res) {

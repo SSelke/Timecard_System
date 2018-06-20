@@ -14,16 +14,16 @@ var UserSchema = mongoose.Schema({
     isManager: Boolean,
     isSysAdmin: Boolean,
     points_accrued: Number,
-    id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
     messages: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Message"
         }
-    ]
+    ],
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose);

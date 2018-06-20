@@ -3,22 +3,22 @@
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="container">
             <% user.messages.forEach(function(message){ %>
-            <% console.log(message.author); %>
+                <% console.log(message)%>
                 <p>
-                    <%= message.text %>
+                    <%= message.text%> Sent by - <%= message.author.name%>
                 </p>
             <% }); %>
         </div>
 
         <div class="container">
-            <form class="mt-5" action="/users/messages" method="POST">
+            <form class="mt-5" action="/users/messages/" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="name">Send to: </label>
                         <select id="name" name="reciever" class="form-control">
                             <option selected value=" ">...</option>
                             <% users.forEach(function(foundUser){ %>
-                                <option value="<%= foundUser._id%>">
+                                <option value="<%= foundUser.username%>">
                                     <%= foundUser.first_name%> <%= foundUser.middle_initial%> <%= foundUser.last_name%>
                                 </option>
                             <% }); %>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="message">Message</label>
-                        <input id="message" type="text" name="message[text]" class="form-control">
+                        <input id="message" type="text" name="message" class="form-control">
                     </div>
                     <button class="btn btn-md btn-primary btn-block mt-5">Send Message</button>
                 </div>

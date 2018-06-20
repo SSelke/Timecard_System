@@ -1,8 +1,10 @@
-var express    = require("express"),
-    router     = express.Router({ mergeParams: true }),
-    User       = require("../models/user"),
-    Message    = require("../models/message"),
-    middleware = require("../middleware");
+var express      = require("express"),
+    router       = express.Router({ mergeParams: true }),
+    mongoose     = require("mongoose"),
+    User         = require("../models/user"),
+    Message      = require("../models/message"),
+    deepPopulate = require("mongoose-deep-populate")(mongoose),  
+    middleware   = require("../middleware");
 
 //INDEX SHOW USER INFO
 router.get("/", middleware.isLoggedIn, function (req, res) {
@@ -11,15 +13,30 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
 
 // Gets messages for regular Employees, not Admins
 router.get("/messages", middleware.isLoggedIn, function (req, res) {
-    User.find({}).populate("messages").exec(function(err, allUsers) {
-        if (err) {
-            console.log("Error Occured");
-            console.log(err);
-        } else {
-            res.render("users/messages", { users: allUsers });
-        }
+    User
+    .findOne({ username: req.user.username })
+    .populate({
+        path: "messages",
+        select: "text author.name",
     })
-});
+    .exec(function (err, foundUser) {
+        if (err || !foundUser) {
+            console.log(err);
+            req.flash("error", "User Not Found");
+            res.redirect("back");
+        } else {
+            User.find({}, function(err, foundUsers){
+                if (err || !foundUsers) {
+                    console.log(err);
+                    req.flash("error", "Users Not Found");
+                    res.redirect("back");
+                } else {
+                    res.render("users/messages", { users: foundUsers, user: foundUser });
+                }
+            });
+        }
+    });
+})
 
 //================//
 // POST A MESSAGE //
@@ -30,16 +47,24 @@ router.post("/messages", middleware.isLoggedIn, function (req, res) {
         if (err) {
             res.redirect("back")
         } else {
-            var newMessage = new Message({
+            const newMessage = {
                 text: req.body.message,
                 author: {
                     id: req.user._id,
-                    name: req.user.first_name
+                    name: req.user.first_name + " " + req.user.middle_initial + " " + req.user.last_name
                 }
-            });
-            User.findOneAndUpdate({ username: req.body.reciever }, { $push: { messages: newMessage } }, (err, updateData) => {
-                req.flash("success", "Message Sent!");
-                res.redirect("/users/messages");
+            }
+            Message.create(newMessage, (err, newMessage) => {
+                if (err) {
+                    req.flash("error", "Whoops! Something went wrong...");
+                    console.log(err);
+                    res.redirect("/users/messages");
+                } else {
+                    User.findOneAndUpdate({ username: req.body.reciever }, { $push: { messages: newMessage._id } }, (err, updateData) => {
+                        req.flash("success", "Message Sent!");
+                        res.redirect("/users/messages");
+                    })
+                }
             })
         }
     })
