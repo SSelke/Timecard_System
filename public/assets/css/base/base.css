@@ -12,6 +12,15 @@ body {
   display: none;
 }
 
+.message-link {
+  border-top: 0.25px solid black;
+  border-bottom: 0.25px solid black;
+}
+
+hr {
+  margin: 0;
+}
+
 body {
   line-height: 24px;
   font-weight: 400;
@@ -61,6 +70,23 @@ h6 {
 
 :-ms-input-placeholder {
   text-align: left;
+}
+
+.boxsizingBorder {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.message-link {
+  width: 100%;
+  color: black;
+  border-top: 0.5px solid black !important;
+  height: 100px !important;
+}
+.message-link:hover {
+  text-decoration: none;
+  color: black;
 }
 
 /*# sourceMappingURL=../../css/base/base.css.map */

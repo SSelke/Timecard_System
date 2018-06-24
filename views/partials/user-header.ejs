@@ -54,7 +54,7 @@
                         <% } %>
                         <% if ( user && user.isManager) { %>
                             <li class="nav-item" role="tab">
-                                <a class="nav-link" href="/admin/messages">
+                                <a class="nav-link" href="/users/messages">
                                     <span data-feather="users"></span>
                                     Messages
                                 </a>
@@ -105,7 +105,7 @@
                 </div>
             </nav>
 
-            <div class="container mt-5">
+            <div class="container mt-5 ">
                 <% if( error && error.length > 0 ) { %>
                     <div class="alert alert-danger" role="alert">
                         <%= error %>

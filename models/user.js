@@ -14,12 +14,22 @@ var UserSchema = mongoose.Schema({
     isManager: Boolean,
     isSysAdmin: Boolean,
     points_accrued: Number,
-    messages: [
+    threads: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Message"
+            ref: "Thread"
         }
     ],
+    messages: {
+        sent: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Message"
+        }],
+        recieved: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Message"
+        }],
+    },
     id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

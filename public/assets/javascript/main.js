@@ -8,3 +8,9 @@ $("#delete-employee").click(function(){
     $(".toggle-danger").toggleClass("d-none");
     $(".toggle-danger").toggleClass("visible");
 });
+
+$("#delete-message").click(function(){
+    $(this).toggleClass("btn-outline-danger");
+    $(".toggle-danger").toggleClass("d-none");
+    $(".toggle-danger").toggleClass("visible");
+});

@@ -1,0 +1,27 @@
+<% include ../partials/user-header %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Reply</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Archive</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Delete</a>
+            </li>
+        </ul>
+        <% user.messages.forEach(function(message) { %>
+            <% if(message._id == foundMessage) { %>
+                <%= message.text %>
+            <% } %>
+        <%});%>
+    </main>
+    </div>
+    </div>
+
+    <% include ../partials/footer %>

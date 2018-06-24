@@ -41,3 +41,23 @@ h6{ font-size: $header-size-6; }
 :-ms-input-placeholder {  
    text-align: left; 
 }
+
+.boxsizingBorder{
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+.message-link{
+    width: 100%;
+    color: black;
+    border-top: 0.5px solid black !important;
+    height: 100px !important;
+
+    &:hover{
+        text-decoration: none;
+        color: black;
+    }
+
+
+}
