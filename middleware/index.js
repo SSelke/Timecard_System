@@ -29,7 +29,7 @@ middlewareObj.isManager = function (req, res, next) {
 middlewareObj.isSysAdmin = function (req, res, next) {
     User.findById(req.params.id).exec(function (err, foundUser) {
         if (foundUser.isSysAdmin) {
-            req.flash("error", "Cannot Delete the System Administator");
+            req.flash("error", "Access Denied...");
             res.redirect("back");
         } else {
             next();

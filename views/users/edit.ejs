@@ -6,7 +6,7 @@
                     <%= user.first_name%>
                         <%= user.last_name%>
                 </h1>
-                <form class="mt-5" action="/users/<%= user._id%>?_method=PUT" method="post">
+                <form class="mt-5" action="/admin/<%= user._id%>?_method=PUT" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="username">User Name</label>

@@ -6,7 +6,7 @@
                 <a class="nav-link" href="#">Reply</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Archive</a>
+                <a class="nav-link disabled" href="#">Archive</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Details</a>
@@ -15,8 +15,8 @@
                 <a class="nav-link" href="#">Delete</a>
             </li>
         </ul>
-        <% user.messages.forEach(function(message) { %>
-            <% if(message._id == foundMessage) { %>
+        <% user.messages.recieved.forEach(function(message) { %>
+            <% if(foundMessage._id === message._id) { %>
                 <%= message.text %>
             <% } %>
         <%});%>

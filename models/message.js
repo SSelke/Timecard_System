@@ -5,6 +5,12 @@ var messageSchema = mongoose.Schema({
     subject: { type: String, required: true },
     date: { type: String, required: true },
     time: { type: String, required: true },
+    thread: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Thread"
+        }
+    },
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

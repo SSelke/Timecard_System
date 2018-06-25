@@ -23,6 +23,29 @@ router.get("/reports", middleware.isLoggedIn, middleware.isManager, function (re
     res.render("users/reports");
 });
 
+//UPDATE USER INFO
+router.put("/:id", middleware.isLoggedIn, middleware.isManager, function (req, res) {
+    console.log("hello1");
+    User.findById(req.params.id, function (err, user) {
+        console.log("hello2");
+        if (err) {
+            res.redirect("back");
+        } else {
+            user.username = req.body.username;
+            user.first_name = req.body.first_name;
+            user.middle_initial = req.body.middle_initial;
+            user.last_name = req.body.last_name;
+            user.phone = req.body.phone;
+            user.address = req.body.address;
+            user.email = req.body.email;
+            user.isManager = req.body.isManager;
+            user.save();
+            req.flash("success", user.first_name + "'s Profile Updated");
+            res.redirect("/admin/employees");
+        }
+    })
+});
+
 // view all info on a selected employee
 router.get("/:id", middleware.isLoggedIn, middleware.isManager, function (req, res) {
     User.findById(req.params.id).exec(function (err, foundUser) {
@@ -30,30 +53,9 @@ router.get("/:id", middleware.isLoggedIn, middleware.isManager, function (req, r
             req.flash("error", "User not found");
             res.redirect("back");
         } else {
-            console.log(foundUser);
-            res.render("users/show2", { user: foundUser });
+            res.render("users/edit", { user: foundUser });
         }
     });
-});
-
-//PASSWORD RESET
-router.put("/:id", function (req, res) {
-    User.findByIdAndUpdate(req.params.id, req.body.user, function (err, updatedUser) {
-
-        if (err) {
-            res.redirect("/" + req.params.id);
-        } else {
-            updatedUser.setPassword(req.body.user.password, function () {
-                if (err) {
-                    console.log(err);
-                    console.log("Password reset error...")
-                }
-                updatedUser.password = req.body.user.password;
-                updatedUser.save();
-            });
-            res.redirect("/users/employees");
-        }
-    })
 });
 
 // Deletes a given employee for admin use only
