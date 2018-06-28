@@ -24,10 +24,8 @@ router.get("/reports", middleware.isLoggedIn, middleware.isManager, function (re
 });
 
 //UPDATE USER INFO
-router.put("/:id", middleware.isLoggedIn, middleware.isManager, function (req, res) {
-    console.log("hello1");
+router.put("/:id/edit", middleware.isLoggedIn, middleware.isManager, function (req, res) {
     User.findById(req.params.id, function (err, user) {
-        console.log("hello2");
         if (err) {
             res.redirect("back");
         } else {
@@ -46,14 +44,26 @@ router.put("/:id", middleware.isLoggedIn, middleware.isManager, function (req, r
     })
 });
 
-// view all info on a selected employee
-router.get("/:id", middleware.isLoggedIn, middleware.isManager, function (req, res) {
+// view all info on a selected employee to edit
+router.get("/:id/edit", middleware.isLoggedIn, middleware.isManager, function (req, res) {
     User.findById(req.params.id).exec(function (err, foundUser) {
         if (err || !foundUser) {
             req.flash("error", "User not found");
             res.redirect("back");
         } else {
             res.render("users/edit", { user: foundUser });
+        }
+    });
+});
+
+// view all info on a selected employee
+router.get("/:id/show", middleware.isLoggedIn, middleware.isManager, function (req, res) {
+    User.findById(req.params.id).exec(function (err, foundUser) {
+        if (err || !foundUser) {
+            req.flash("error", "User not found");
+            res.redirect("back");
+        } else {
+            res.render("users/show", { user: foundUser });
         }
     });
 });

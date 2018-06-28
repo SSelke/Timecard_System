@@ -6,7 +6,7 @@
                     <%= user.first_name%>
                         <%= user.last_name%>
                 </h1>
-                <form class="mt-5" action="/admin/<%= user._id%>?_method=PUT" method="POST">
+                <form class="mt-5" action="/admin/<%= user._id%>/edit?_method=PUT" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="username">User Name</label>
@@ -19,7 +19,7 @@
                         <div class="form-group col-md-2">
                             <label for="middle_initial">Middle Initial</label>
                             <select id="middle_initial" name="middle_initial" class="form-control" value="<%= user.middle_initial%>">
-                                <option selected value="<%= user.middle_initial%>"></option>
+                                <option selected value="<%= user.middle_initial%>"><%= user.middle_initial%></option>
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -61,8 +61,13 @@
                         <div class="form-group col-md-4">
                             <label for="privileges">Privileges</label>
                             <select id="privileges" name="isManager" class="form-control">
-                                <option selected value="false">Employee</option>
-                                <option value="true">Manager</option>
+                                <% if( user.isManager ){ %>
+                                    <option selected value="true">Manager</option>
+                                    <option value="false">Employee</option>
+                                <% } else { %>
+                                    <option selected value="false">Employee</option>
+                                    <option value="true">Manager</option>
+                                <% } %>
                             </select>
                         </div>
                         <div class="form-group col-md-4">

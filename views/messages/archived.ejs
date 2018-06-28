@@ -17,22 +17,28 @@
             <a href="/users/messages/<%= message._id%>/show" class="message-link">
                 <div class="row message-link">
                     <div style="width: 10%;">
-                        <div class="pl-3 mt-2"><%= message.author.name%></div>
+                        <div class="pl-3 mt-2">
+                            <%= message.author.name%>
+                        </div>
                     </div>
-                    <div  style="width: 75%;">
-                        <div class="pl-3 mt-2"><%= message.subject%></div>
-                    </div> 
+                    <div style="width: 75%;">
+                        <div class="pl-3 mt-2">
+                            <%= message.subject%>
+                        </div>
+                    </div>
                     <div style="width: 8%;">
-                        <div class="mt-2"><%= message.time%></div>
+                        <div class="mt-2">
+                            <%= message.time%>
+                        </div>
                     </div>
                     <div style="width: 7%;">
                         <form class="d-none toggle-danger" action="/users/messages/<%= message._id%>?_method=PUT" method="POST">
-                            <input type="submit" class="mt-1 btn btn-sm btn-danger visible" value="Delete" name="inbox">
+                            <input type="submit" class="mt-1 btn btn-sm btn-danger visible" value="Delete" name="archived">
                         </form>
                     </div>
                 </div>
             </a>
-        <% }); %>
+            <% }); %>
     </div>
     </main>
     </div>

@@ -8,6 +8,10 @@ body {
   display: inline-block !important;
 }
 
+.showing {
+  display: inline-block !important;
+}
+
 .hidden {
   display: none;
 }

@@ -51,10 +51,10 @@
                                 <a href="#" class="btn btn-success mt-3 mb-3 disabled visible">View</a>
                                 <a href="#" class="btn btn-warning mt-3 mb-3 disabled visible">Edit</a>
                             <% } else { %>
-                            <a href="/admin/<%= foundUser._id%>" class="btn btn-success mt-3 mb-3 visible">View</a>
-                            <a href="/admin/<%= foundUser._id%>" class="btn btn-warning mt-3 mb-3 visible">Edit</a>
+                            <a href="/admin/<%= foundUser._id%>/show" class="btn btn-success mt-3 mb-3 visible">View</a>
+                            <a href="/admin/<%= foundUser._id%>/edit" class="btn btn-warning mt-3 mb-3 visible">Edit</a>
                             <% } %>
-                            <% if(user.username != foundUser.username) {%>
+                            <% if((user.username != foundUser.username) && !user.isSysAdmin) {%>
                                 <form class="d-none toggle-danger mt-3" action="/admin/<%= foundUser._id%>?_method=DELETE" method="POST">
                                     <button class="btn btn-danger visible">Delete</button>
                                 </form>

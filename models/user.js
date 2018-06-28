@@ -3,14 +3,14 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var uniqueValidator = require('mongoose-unique-validator');
 
 var UserSchema = mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    first_name: { type: String, required: true },
+    username: { type: String, required: true, unique: true, trim: true },
+    password: { type: String, required: true, trim: true },
+    first_name: { type: String, required: true, trim: true },
     middle_initial: { type: String, required: true },
-    last_name: { type: String, required: true },
-    phone: { type: Number, required: true },
-    address: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    last_name: { type: String, required: true, trim: true },
+    phone: { type: Number, required: true, trim: true },
+    address: { type: String, required: true, trim: true },
+    email: { type: String, required: true, unique: true, trim: true },
     isManager: Boolean,
     isSysAdmin: Boolean,
     points_accrued: Number,
@@ -26,6 +26,10 @@ var UserSchema = mongoose.Schema({
             ref: "Message"
         }],
         recieved: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Message"
+        }],
+        archived: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Message"
         }],

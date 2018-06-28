@@ -1,6 +1,5 @@
 <% include ../partials/user-header %>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
                 <a class="nav-link" href="#">Reply</a>
@@ -15,11 +14,41 @@
                 <a class="nav-link" href="#">Delete</a>
             </li>
         </ul>
-        <% user.messages.recieved.forEach(function(message) { %>
-            <% if(foundMessage._id === message._id) { %>
-                <%= message.text %>
-            <% } %>
-        <%});%>
+        
+        <div class="container mt-5 mb-5">
+            <div class="row">
+                <div class="col">
+                    <div class="message-board">
+                        <h2><%= thread.subject%></h2>
+                        <hr class="mt-3 mb-3">
+                        <% thread.messages.forEach(function(message) { %>
+                                <div>
+                                    <h4><%= message.author.name%><span class="float-right"><%= message.time%></span></h4>
+                                    <h6>to - <%= message.recipient.name%></h6>
+                                    <p><%= message.text%></p>
+                                </div>
+                                <hr class="mt-3 mb-3">
+                        <%});%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form action="/users/messages/<%= foundMessage._id%>/show?_method=PUT" method="POST">
+                        <label for="name">Send to: </label>
+                        <select id="name" name="reciever" class="form-control">
+                            <option selected value="">...</option>
+                            <option value="<%= thread.author.id%>"><%= thread.author.name%></option>
+                            <option value="<%= thread.recipient.id%>"><%= thread.recipient.name%></option>
+                        </select>
+                        <textarea class="form-group form-control boxsizingBorder mt-1" id="message" style="resize: none" rows="8" name="message" required></textarea>
+                        <button class="btn btn-md btn-secondary btn-block mt-5">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </main>
     </div>
     </div>

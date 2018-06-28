@@ -17,6 +17,13 @@ var messageSchema = mongoose.Schema({
             ref: "User"
         },
         name: { type: String, required: true }
+    },
+    recipient: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        name: { type: String, required: true }
     }
 });
 

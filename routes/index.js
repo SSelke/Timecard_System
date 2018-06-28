@@ -32,9 +32,7 @@ router.post("/register", function (req, res) {
         if (err) {
             return res.render("register", { error: err.message }, console.log(err));
         }
-        passport.authenticate("local")(req, res, function () {
-            res.redirect("/users");
-        });
+        res.redirect("/admin/employees");
     });
 });
 
