@@ -1,29 +1,41 @@
-<% include ../partials/header %>
-<div class="container">
-    <form class="mt-5" action="/users/messages/new" method="POST">
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <label for="name">Send to: </label>
-                <select id="name" name="reciever" class="form-control">
-                    <option selected value=" ">...</option>
-                    <% users.forEach(function(foundUser){ %>
-                        <option value="<%= foundUser._id%>">
-                            <%= foundUser.first_name%>
-                                <%= foundUser.middle_initial%>
-                                    <%= foundUser.last_name%>
-                        </option>
-                        <% }); %>
-                </select>
-            </div>
-            <div class="form-group col-md-10">
-                <label for="subject">Subject</label>
-                <input id="subject" type="text" name="subject" class="form-control">
-            </div>
-        </div>
-        <label for="message">Message</label>
-        <textarea class="form-group form-control boxsizingBorder" id="message" style="resize: none" rows="8" name="message" required></textarea>
-        <button class="btn btn-md btn-secondary btn-block mt-5">Send Message</button>
-    </form>
-</div>
+<% include ../partials/user-header %>
+                <div class="d-flex justify-content-between flex-wrap flex-xs-nowrap align-items-center pt-3 pb-2 mb-3">
+                    <h1>New Message</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <a href="/users/messages" class="btn btn-sm btn-warning" id="message-inbox">Cancel</a>
+                        </div>
+                    </div>
+                </div>
 
-<% include ../partials/footer %>
+                <div class="container">
+                    <form class="mt-5" action="/users/messages/new" method="POST">
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="name">Send to: </label>
+                                <select id="name" name="reciever" class="form-control">
+                                    <option selected value=" ">...</option>
+                                    <% users.forEach(function(foundUser){ %>
+                                        <option value="<%= foundUser._id%>">
+                                            <%= foundUser.first_name%>
+                                                <%= foundUser.middle_initial%>
+                                                    <%= foundUser.last_name%>
+                                        </option>
+                                        <% }); %>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-10">
+                                <label for="subject">Subject</label>
+                                <input id="subject" type="text" name="subject" class="form-control">
+                            </div>
+                        </div>
+                        <label for="message">Message</label>
+                        <textarea class="form-group form-control boxsizingBorder" id="message" style="resize: none" rows="8" name="message" required></textarea>
+                        <button class="btn btn-md btn-secondary btn-block mt-5">Send Message</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <% include ../partials/footer %>
