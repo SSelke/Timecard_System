@@ -8,4 +8,3 @@ $(document).ready(function(){
     $("#calendar-month-year").html(monthNames[month] + " " + year);
 });
 
-console.log("hello")
