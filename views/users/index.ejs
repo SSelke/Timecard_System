@@ -17,44 +17,44 @@
                     <div class="row">
                         <div class="container">
                             <div class="container">
-                                <h4>Current Week</h4>
+                                <h3>Current Week</h3>
                                 <h6 class="mb-4">(<%= startOfWeek%> - <%= endOfWeek%>)</h6>
                                 <div class="row" style="height: 50px;">
                                 <% weekDays.forEach(function(day){ %>
-                                        <div class="col" style="border: 1px solid black;"><%= day %></div>
+                                        <div class="col col-style"><%= day %></div>
                                 <% }); %>
                                 </div>
                                 <div class="row" style="height: 50px;">
-                                    <div class="col" style="border: 1px solid black;">Date</div>
-                                    <div class="col" style="border: 1px solid black;">Date</div>
-                                    <div class="col" style="border: 1px solid black;">Date</div>
-                                    <div class="col" style="border: 1px solid black;">Date</div>
-                                    <div class="col" style="border: 1px solid black;">Date</div>
-                                    <div class="col" style="border: 1px solid black;">Date</div>
-                                    <div class="col" style="border: 1px solid black;">Date</div>
+                                    <div class="col col-style">Date</div>
+                                    <div class="col col-style">Date</div>
+                                    <div class="col col-style">Date</div>
+                                    <div class="col col-style">Date</div>
+                                    <div class="col col-style">Date</div>
+                                    <div class="col col-style">Date</div>
+                                    <div class="col col-style">Date</div>
                                 </div>
                             </div>
                             <div class="container mt-5 mb-5">
-                                <h1 id="calendar-month-year">June 2018</h1>
+                                <h1><%= currentMonth%></h1>
                                 <hr class="mt-4 mb-4">
                                 <% var x = 0 %>
                                 <% month.forEach(function(week){ %>
                                     <h4 class="mt-5">Week of <%= weekRange[x]%></h4>
                                     <div class="row mt-5" style="height: 50px;">
                                         <% week.forEach(function(day){ %>
-                                            <div class="col" style="border: 1px solid black;">
+                                            <div class="col col-style">
                                                 <%= day %>
                                             </div>
                                         <% }); %>
                                     </div>
                                     <div class="row" style="height: 50px;">
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
-                                        <div class="col" style="border: 1px solid black;">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
+                                        <div class="col col-style">Day Off</div>
                                     </div>
                                     <% x++; %>
                                 <% }); %>
@@ -62,102 +62,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="container mt-5 mb-5" style="text-align: center">
-                    <h1 id="calendar-month-year">June 2018</h1>
-                    <hr class="mt-4 mb-4">
-                    <div class="row">
-                        <div class="container">
-                            <h4 class="mb-4">(04/01 - 04/07)</h4>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Monday</div>
-                                <div class="col" style="border: 1px solid black;">Tuesday</div>
-                                <div class="col" style="border: 1px solid black;">Wednesday</div>
-                                <div class="col" style="border: 1px solid black;">Thursday</div>
-                                <div class="col" style="border: 1px solid black;">Friday</div>
-                                <div class="col" style="border: 1px solid black;">Saturday</div>
-                                <div class="col" style="border: 1px solid black;">Sunday</div>
-                            </div>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="container">
-                            <h4 class="mb-4">(04/08 - 04/014)</h4>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Monday</div>
-                                <div class="col" style="border: 1px solid black;">Tuesday</div>
-                                <div class="col" style="border: 1px solid black;">Wednesday</div>
-                                <div class="col" style="border: 1px solid black;">Thursday</div>
-                                <div class="col" style="border: 1px solid black;">Friday</div>
-                                <div class="col" style="border: 1px solid black;">Saturday</div>
-                                <div class="col" style="border: 1px solid black;">Sunday</div>
-                            </div>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="container">
-                            <h4 class="mb-4">(04/08 - 04/014)</h4>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Monday</div>
-                                <div class="col" style="border: 1px solid black;">Tuesday</div>
-                                <div class="col" style="border: 1px solid black;">Wednesday</div>
-                                <div class="col" style="border: 1px solid black;">Thursday</div>
-                                <div class="col" style="border: 1px solid black;">Friday</div>
-                                <div class="col" style="border: 1px solid black;">Saturday</div>
-                                <div class="col" style="border: 1px solid black;">Sunday</div>
-                            </div>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="container">
-                            <h4 class="mb-4">(04/08 - 04/014)</h4>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Monday</div>
-                                <div class="col" style="border: 1px solid black;">Tuesday</div>
-                                <div class="col" style="border: 1px solid black;">Wednesday</div>
-                                <div class="col" style="border: 1px solid black;">Thursday</div>
-                                <div class="col" style="border: 1px solid black;">Friday</div>
-                                <div class="col" style="border: 1px solid black;">Saturday</div>
-                                <div class="col" style="border: 1px solid black;">Sunday</div>
-                            </div>
-                            <div class="row" style="height: 50px;">
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                                <div class="col" style="border: 1px solid black;">Date</div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </main>
         </div>
     </div>

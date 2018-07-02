@@ -1,0 +1,76 @@
+<% include ../partials/user-header %>
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-5 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+            </button>
+        </div>
+    </div>
+
+    <div class="container mt-5" style="text-align: center;">
+        <h1 class="mb-5">Schedules</h1>
+        <h4 class="mb-4">Managers</h4>
+        <div class="row">
+            <div class="col col-style align-middle">Managers</div>
+            <% week.forEach(function(day){ %>
+                <div class="col col-style align-middle">
+                    <%= day %>
+                </div>
+                <% }); %>
+        </div>
+        <% managers.forEach(function(manager){ %>
+            <div class="row">
+                <div class="col col-style align-middle">
+                    <%= manager.first_name%>
+                        <%= manager.middle_initial%>
+                            <%= manager.last_name%>
+                </div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+            </div>
+            <% }); %>
+    </div>
+    <div class="container mt-5" style="text-align: center;">
+        <h4 class="mb-4">Employees</h4>
+        <div class="row">
+            <div class="col col-style align-middle">Employees</div>
+            <% week.forEach(function(day){ %>
+                <div class="col col-style align-middle">
+                    <%= day %>
+                </div>
+                <% }); %>
+        </div>
+        <% employees.forEach(function(employee){ %>
+            <div class="row">
+                <div class="col col-style align-middle">
+                    <%= employee.first_name%>
+                        <%= employee.middle_initial%>
+                            <%= employee.last_name%>
+                </div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+                <div class="col col-style align-middle">Day Off</div>
+            </div>
+            <% }); %>
+    </div>
+    </main>
+    </div>
+    </div>
+
+    <% include ../partials/footer %>

@@ -12,6 +12,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
     //Get first and Last day of month
     var startOfMonth = moment().startOf('month');
     var endOfMonth = moment().endOf('month');
+    var currentMonth = moment().format("MMMM, YYYY");
 
     //Get first and last day of Current Week formatted
     var startOfWeek = moment().startOf('isoWeek').format("ddd, Do");
@@ -101,6 +102,7 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
     
     res.render("users/index", {
         month: month,
+        currentMonth: currentMonth,
         startOfWeek: startOfWeek,
         endOfWeek: endOfWeek,
         weekDays: weekDays,

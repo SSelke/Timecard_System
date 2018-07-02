@@ -1,7 +1,9 @@
 var express    = require("express"),
     router     = express.Router({ mergeParams: true }),
     User       = require("../models/user"),
+    Time       = require("../models/time"),
     Message    = require("../models/message"),
+    moment     = require("moment"),
     date       = require("date-and-time"),
     middleware = require("../middleware");
 
@@ -15,12 +17,6 @@ router.get("/employees", middleware.isLoggedIn, middleware.isManager, function (
             res.render("users/employees", { users: allUsers });
         }
     })
-});
-
-
-// Gets reports for all the users timesheets combined.
-router.get("/reports", middleware.isLoggedIn, middleware.isManager, function (req, res) {
-    res.render("users/reports");
 });
 
 //UPDATE USER INFO

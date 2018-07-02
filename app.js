@@ -13,10 +13,11 @@ var express        = require("express"),
     app            = express();
 
 //require routes
-var userRoutes    = require("./routes/user.js"),
-    indexRoutes   = require("./routes/index.js"),
-    adminRoutes   = require("./routes/admin.js"),
-    messageRoutes = require("./routes/message.js");
+var userRoutes       = require("./routes/user.js"),
+    indexRoutes      = require("./routes/index.js"),
+    adminRoutes      = require("./routes/admin.js"),
+    messageRoutes    = require("./routes/message.js"),
+    schedulingRoutes = require("./routes/scheduling.js");
 
 mongoose.connect("mongodb://admin:timecard123@ds245210.mlab.com:45210/timecard_system");
 app.use(methodOverride("_method"));
@@ -53,11 +54,12 @@ app.use(indexRoutes);
 app.use("/users", userRoutes);
 app.use("/admin", adminRoutes);
 app.use("/users/messages", messageRoutes);
+app.use("/admin/scheduling", schedulingRoutes);
 
-// app.all('*', function (req, res) {
-//     req.flash("error", "Not a page");
-//     res.redirect("/");
-// });
+app.all('*', function (req, res) {
+    req.flash("error", "Not a page");
+    res.redirect("/");
+});
 
 app.listen(27017 || process.env.PORT, function(){
     console.log("Server Started...");
